@@ -1,0 +1,62 @@
+
+{{extend ("./layout")}}
+
+
+{{#block ("body")}}
+
+<div class="container content">
+    <div class="row">
+      <form>
+        <div class="form-group">
+			    <label for="username">用户名</label>
+			    <input type="text" class="form-control" id="username" placeholder="用户名可以是中文，不能和别人重复">
+			  </div>
+			  <div class="form-group">
+			    <label for="password">密码</label>
+			    <input type="password" class="form-control" id="password" placeholder="密码，至少6位">
+			  </div>
+			  <div class="checkbox">
+			    <label>
+			      <input type="checkbox">我遵守规定
+			    </label>
+			  </div>
+			  <button type="button" id="logup" class="btn btn-default">注册</button>
+        </form>
+				<div class="alert alert-danger" id="cuowukuang" role="alert">
+					用户名被占用，请更换
+				</div>
+    </div>
+      
+</div>
+
+{{/block}}
+
+{{#block ("foot")}}
+
+<script>
+	$("#cuowukuang").hide();
+	$("input").focus(function(){
+		$("#cuowukuang").fadeOut();
+	});
+	$("#logup").on("click",function(){
+		var username=$("#username").val();
+		var password=$("#password").val();
+		$.post("/register",{
+			username:username,
+			password:password
+		},function(result){
+			if(result==1){
+				alert("注册成功，将自动跳转到首页");
+				window.location="/";
+				return;
+			}
+			if(result==-1){
+				return $("#cuowukuang").fadeIn();
+			}
+			console.log("服务器出错了");
+		});
+
+	});
+</script>
+
+{{/block}}

@@ -13,7 +13,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/public/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="/public/css/jumbotron.css" rel="stylesheet">
+    
     {{{block ("head")}}}
 
 		

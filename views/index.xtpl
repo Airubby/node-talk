@@ -1,10 +1,6 @@
 
 {{extend ("./layout")}}
 
-{{#block ("head")}}
-    <link href="/public/css/jumbotron.css" rel="stylesheet">
-{{/block}}
-
 
 {{#block ("body")}}
     <div class="jumbotron">
