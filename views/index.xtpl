@@ -1,0 +1,55 @@
+
+{{extend ("./layout")}}
+
+{{#block ("head")}}
+    <link href="/public/css/jumbotron.css" rel="stylesheet">
+{{/block}}
+
+
+{{#block ("body")}}
+    <div class="jumbotron">
+    	
+      <div class="container">
+      	<div class="row">
+      		<div class="col-md-6">
+      			<h1>欢迎!</h1>
+		        <p>班级说说是我们交流的园地，欢迎注册!</p>
+		        <p><a class="btn btn-primary btn-lg" href="/regist" role="button">注册</a></p>
+      		</div>
+      		<div class="col-md-6">
+		        <p>已有账号，登录</p>
+		        <form>
+                    <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" id="username" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" placeholder="密码">
+                    </div>
+                    <button type="button" id="denglu" class="btn btn-success">登录</button>
+                </form>
+                <div class="alert alert-danger" id="cuowukuang" role="alert" style="display: none;"></div>
+      		</div>
+      	</div>
+       
+      </div>
+      
+      
+    </div>
+	<div class="container">
+		<!--分页条-->
+		<nav>
+			<ul class="pagination">
+            </ul>
+		</nav>
+		<!--分页条-->
+		<!--记录-->
+		<div class="row" id="quanbushuoshuo">
+			
+		</div>
+		<!--记录-->
+		
+    </div>
+
+{{/block}}
