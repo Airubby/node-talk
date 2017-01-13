@@ -14,12 +14,17 @@
        		<li><a href="/">全部说说<span class="sr-only">(current)</span></a></li>
 	        <li><a href="/userlist">成员列表</a></li>
          </ul>	
-
+         {{#if(login)}}
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">欢迎你！{{username}}</a></li>
+		        <li><a href="#">修改资料</a></li>
+	      	</ul>
+          {{else}}
 	      	<ul class="nav navbar-nav navbar-right">
 		        <li><a href="/register">注册</a></li>
 		        <li><a href="/login">登录</a></li>
 	      	</ul>
-	      
+	       {{/if}}
     </div>
   </div>
 </nav>

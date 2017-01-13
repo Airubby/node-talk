@@ -1,0 +1,62 @@
+
+{{extend ("./layout")}}
+
+
+{{#block ("body")}}
+
+<div class="container content">
+    <div class="row">
+      <form>
+			  <div class="form-group">
+			    <label for="username">用户名</label>
+			    <input type="text" class="form-control" id="username" placeholder="用户名">
+			  </div>
+			  <div class="form-group">
+			    <label for="password">密码</label>
+			    <input type="password" class="form-control" id="password" placeholder="密码">
+			  </div>
+			  <button type="button" id="login" class="btn btn-default">登录</button>
+			</form>
+			<div class="alert alert-danger" id="cuowukuang" role="alert">
+				
+			</div>
+		</div>
+      
+</div>
+
+{{/block}}
+
+{{#block ("foot")}}
+
+<script>
+	$("#cuowukuang").hide();
+	$("input").focus(function(){
+		$("#cuowukuang").fadeOut();
+		$(this).val('');
+	});
+	$("#login").on("click",function(){
+		var username=$("#username").val();
+		var password=$("#password").val();
+		$.post("/login",{
+			username:username,
+			password:password
+		},function(result){
+			if(result=="1"){
+					alert("登录成功，将自动跳转到首页");
+					window.location="/";
+					return;
+			}
+			if(result=="-2"){
+				$('#cuowukuang').fadeIn();
+				$('#cuowukuang').html("密码错误！");	
+				return;
+			}
+			if(result =="-1"){
+				$('#cuowukuang').fadeIn();
+				$('#cuowukuang').html("用户名不存在！");	
+			}
+		})
+	});	
+</script>
+
+{{/block}}

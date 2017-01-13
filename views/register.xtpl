@@ -37,6 +37,7 @@
 	$("#cuowukuang").hide();
 	$("input").focus(function(){
 		$("#cuowukuang").fadeOut();
+		$(this).val('');
 	});
 	$("#logup").on("click",function(){
 		var username=$("#username").val();
@@ -45,12 +46,12 @@
 			username:username,
 			password:password
 		},function(result){
-			if(result==1){
+			if(result=="1"){
 				alert("注册成功，将自动跳转到首页");
 				window.location="/";
 				return;
 			}
-			if(result==-1){
+			if(result=="-1"){
 				return $("#cuowukuang").fadeIn();
 			}
 			console.log("服务器出错了");
