@@ -1,0 +1,16 @@
+
+{{extend ("./layout")}}
+
+
+{{#block ("body")}}
+
+<div class="container content">
+    <div class="row">
+		<strong>正在退出登录...</strong>
+		<span><a href="/" class="logout">如果没有反应，点此链接跳转</a></span>
+	</div>
+      
+</div>
+
+{{/block}}
+

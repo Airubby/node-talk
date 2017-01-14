@@ -71,4 +71,11 @@ exports.doLogin = function (req, res, next) {
             }
         });
     });
+};
+
+
+exports.showLogout=function(req,res,next){
+    req.session.login='';
+    req.session.username='';
+    res.redirect('back');
 }
