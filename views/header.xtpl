@@ -11,7 +11,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
     	<ul class="nav navbar-nav">
-       		<li><a href="/">全部说说<span class="sr-only">(current)</span></a></li>
+       		<li {{#if( active==="index")}}class="active"{{/if}}><a href="/">全部说说<span class="sr-only">(current)</span></a></li>
 	        <li><a href="/userlist">成员列表</a></li>
          </ul>	
          {{#if(login)}}
@@ -22,8 +22,8 @@
 	      	</ul>
           {{else}}
 	      	<ul class="nav navbar-nav navbar-right">
-		        <li><a href="/register">注册</a></li>
-		        <li><a href="/login">登录</a></li>
+		        <li {{#if( active==="register")}}class="active"{{/if}}><a href="/register">注册</a></li>
+		        <li {{#if( active==="login")}}class="active"{{/if}}><a href="/login">登录</a></li>
 	      	</ul>
 	       {{/if}}
     </div>

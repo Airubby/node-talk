@@ -6,7 +6,10 @@ const db = require("../models/db");
 
 exports.showRegister = function (req, res, next) {
     res.render("register", {
-        title: '班级说说注册'
+        title: '班级说说-注册',
+        login: req.session.login == "1" ? true : false,
+        username: req.session.username,
+        active:'register'
     });
 };
 
@@ -43,7 +46,10 @@ exports.doRegister = function (req, res, next) {
 
 exports.showLogin = function (req, res, next) {
     res.render("login", {
-        title: '班级说说登录'
+        title: '班级说说-登录',
+        login: req.session.login == "1" ? true : false,
+        username: req.session.username,
+        active:"login"
     });
 };
 
