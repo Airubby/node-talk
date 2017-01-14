@@ -12,5 +12,9 @@ router.post("/register", userController.doRegister);
 router.get("/login",userController.showLogin);
 router.post("/login",userController.doLogin);
 router.get("/logout",userController.showLogout);
+router.get("/setphoto",userController.showSetPhoto);
+router.post("/setphoto",userController.doSetPhoto);
+router.get("/cutphoto",userController.showCutPhoto);
+router.get("/docutphoto",userController.doCutPhoto);
 
 module.exports = router;

@@ -1,0 +1,28 @@
+
+{{extend ("./layout")}}
+
+
+{{#block ("body")}}
+
+<div class="container content">
+      <div class="row">
+        <h1>{{title}}</h1>
+        <form action="/setphoto" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+            <label for="username">选择头像</label>
+            <input type="file" class="form-control" id="photo" name="photoImage">
+            </div>
+            <button type="submit" id="setphoto" class="btn btn-default">上传</button>
+        </form>
+      </div>
+</div>
+
+{{/block}}
+
+{{#block ("foot")}}
+
+<script>
+	
+</script>
+
+{{/block}}

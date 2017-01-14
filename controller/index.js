@@ -1,12 +1,30 @@
 "use strict"
 
+const db = require("../models/db");
+
 exports.showIndex = function (req, res, next) {
-    res.render('index', {
-        title: '班级说说首页',
-        login: req.session.login == "1" ? true : false,
-        username: req.session.username,
-        active:'index'
-    });
+    if (req.session.login == "1") {
+        db.find("users", {
+            username: req.session.username
+        }, function (err, result) {
+            let photo = result[0].photo || "moren.jpg";
+            res.render("index", {
+                "login": req.session.login == "1" ? true : false,
+                "username": req.session.login == "1" ? req.session.username : "",
+                "active": "首页",
+                "photo": photo
+            });
+        });
+    } else {
+        res.render('index', {
+            "title": '班级说说首页',
+            "login": req.session.login == "1" ? true : false,
+            "username": req.session.username,
+            "active": 'index',
+            "photo": "moren.jpg"
+        });
+    }
+
 };
 
 
@@ -25,7 +43,7 @@ exports.doPublish = function (req, res, next) {
             "content": content
         }, function (err, result) {
             if (err) {
-              return res.send("-3"); //服务器错误
+                return res.send("-3"); //服务器错误
             }
             res.send("1");
         });

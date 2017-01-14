@@ -1,0 +1,52 @@
+
+{{extend ("./layout")}}
+
+
+{{#block ("head")}}
+<link rel="stylesheet" type="text/css" href="/public/css/jquery.Jcrop.css">
+<link rel="stylesheet" type="text/css" href="/public/css/demos.css">
+{{/block}}
+
+{{#block ("body")}}
+
+<div class="container content">
+    <div class="jc-demo-box">
+      <img src="/icon/{{photo}}" id="target" />
+      <div id="preview-pane">
+        <div class="preview-container">
+          <img src="/icon/{{photo}}" class="jcrop-preview" alt="Preview" />
+        </div>
+      </div>
+      <input type="button" value="剪裁！！" id="inputbtn" class="btn btn-warning">
+    </div>
+</div>
+
+{{/block}}
+
+{{#block ("foot")}}
+<script src="/public/js/jquery.Jcrop.min.js"></script>
+<script src="/public/js/jcrop.xg.js"></script>
+<script>
+ $("#inputbtn").click(function () {
+        var w = parseInt($(".jcrop-holder>div:first").css("width"));
+        var h = parseInt($(".jcrop-holder>div:first").css("height"));
+        var x = parseInt($(".jcrop-holder>div:first").css("left"));
+        var y = parseInt($(".jcrop-holder>div:first").css("top"));
+
+        $.get("/docutphoto",{
+            "w" : w,
+            "h" : h,
+            "x" : x,
+            "y" : y
+        },function(result){
+          console.log(result)
+            if(result=="1"){
+            	alert("更改头像成功");
+            	window.location="/";
+            }else if(result=="-1"){
+              alert("图片裁剪失败，请联系管理员！");
+            }
+        });
+    });
+</script>
+{{/block}}

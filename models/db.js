@@ -56,14 +56,27 @@ exports.find = function (collectionName, json, C, D) {
         });
 
     });
-}
+};
 
 
-exports.insertOne=function(collectionName,json,callback){
-    _connectDB(function(err,db){
-        db.collection(collectionName).insertOne(json,function(err,result){
+exports.insertOne = function (collectionName, json, callback) {
+    _connectDB(function (err, db) {
+        db.collection(collectionName).insertOne(json, function (err, result) {
             callback(err, result);
             db.close(); //关闭数据库
         });
     });
-}
+};
+
+
+exports.updateMany = function (collectionName, json1,json2, callback) {
+    _connectDB(function(err,db){
+        db.collection(collectionName).updateMany(json1,json2,function(err,result){
+            callback(err,result);
+            db.close();
+        });
+    });
+};
+
+
+

@@ -18,7 +18,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">欢迎你！{{username}}</a></li>
 		        <li><a href="/logout">退出登录</a></li>
-		        <li><a href="#">修改资料</a></li>
+		        <li {{#if( active==="setphoto")}}class="active"{{/if}}><a href="/setphoto">修改头像</a></li>
 	      	</ul>
           {{else}}
 	      	<ul class="nav navbar-nav navbar-right">
