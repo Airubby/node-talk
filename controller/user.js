@@ -190,12 +190,32 @@ exports.doCutPhoto = function (req, res, next) {
 
 exports.showUserList = function (req, res, next) {
     db.find("users", null, function (err, result) {
-        console.log(result);
         res.render("userlist", {
             "title": "班级说说-成员列表",
             "login": req.session.login == "1" ? true : false,
+            "username": req.session.username,
             "active": "userlist",
             "userlist": result
         })
+    });
+};
+
+
+
+exports.showUser = function (req, res, next) {
+    //params 是通过冒号    app.get("/user/:user",router.showUser);
+    //query 是通过问号
+    let username = req.params['username'];
+    db.find("message", {
+        "username": username
+    }, function (err, result) {
+        return res.render("usertalk", {
+            "title": "个人说说",
+            "login": req.session.login == "1" ? true : false,
+            "username": username,
+            "active": "usercenter",
+            "usertalk": result
+        });
+
     });
 };

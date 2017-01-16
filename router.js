@@ -20,5 +20,7 @@ router.post("/publish",indexController.doPublish);
 router.get("/getalltalk",indexController.getAllTalk);
 router.get("/getallcount",indexController.getAllCount);
 router.get("/userlist",userController.showUserList);
+router.get("/user/:username",userController.showUser);
+
 
 module.exports = router;

@@ -25,9 +25,5 @@
 
 {{#block ("foot")}}
 
-<script>
-
-
-</script>
 
 {{/block}}

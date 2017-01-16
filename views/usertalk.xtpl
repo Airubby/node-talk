@@ -1,0 +1,34 @@
+
+{{extend ("./layout")}}
+
+{{#block ("head")}}
+<style>
+	.one{
+		border-bottom: 1px solid #ccc;
+	}
+</style>
+{{/block}}
+
+{{#block ("body")}}
+
+	<div class="container">
+		<h1>{{username}}-{{title}}</h1>
+		<div>
+			{{#each(usertalk)}}
+      		<div class="one">
+      			<p>{{this.content}}</p>
+				<p>{{this.datetime}}</p>
+      		</div>
+			{{/each}}
+      	</div>
+    </div>
+
+{{/block}}
+
+
+
+
+{{#block ("foot")}}
+
+
+{{/block}}
