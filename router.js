@@ -19,5 +19,6 @@ router.get("/docutphoto",userController.doCutPhoto);
 router.post("/publish",indexController.doPublish);
 router.get("/getalltalk",indexController.getAllTalk);
 router.get("/getallcount",indexController.getAllCount);
+router.get("/userlist",userController.showUserList);
 
 module.exports = router;

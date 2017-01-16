@@ -144,7 +144,7 @@
 		},function(result){
 			if(result=="1"){
 				//成功
-				//alert("发布成功");
+				alert("发布成功");
 				window.location="/";
 			}else{
 				alert("发布失败，请联系管理员！");	

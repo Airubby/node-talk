@@ -163,11 +163,11 @@ exports.doCutPhoto = function (req, res, next) {
     let h = req.query.h;
     let x = req.query.x;
     let y = req.query.y;
-    
-    imageMagick("/icon/"  + filename)
+
+    imageMagick("/icon/" + filename)
         .crop(w, h, x, y)
         .resize(100, 100, '!')
-        .write("/icon/"  + filename, function (err) {
+        .write("/icon/" + filename, function (err) {
             if (err) {
                 console.log(err)
                 return res.send("-1");
@@ -186,5 +186,16 @@ exports.doCutPhoto = function (req, res, next) {
             });
         });
 
+};
 
-}
+exports.showUserList = function (req, res, next) {
+    db.find("users", null, function (err, result) {
+        console.log(result);
+        res.render("userlist", {
+            "title": "班级说说-成员列表",
+            "login": req.session.login == "1" ? true : false,
+            "active": "userlist",
+            "userlist": result
+        })
+    });
+};
