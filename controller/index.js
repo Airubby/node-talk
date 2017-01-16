@@ -1,6 +1,7 @@
 "use strict"
 
 const db = require("../models/db");
+const formidable=require("formidable");
 
 exports.showIndex = function (req, res, next) {
     if (req.session.login == "1") {

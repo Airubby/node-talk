@@ -99,6 +99,21 @@
 		})
 	});	
 
+	$("#publish").on("click",function(){
+		var content=$("#content").val();
+		$.post("/publish",{
+			"content":content
+		},function(result){
+			if(result=="1"){
+				//成功
+				alert("发布成功");
+				window.location="/";
+			}else{
+				alert("发布失败，请联系管理员！");	
+			}
+		});
+	});
+
 
 </script>
 
