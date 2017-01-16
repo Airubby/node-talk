@@ -49,12 +49,6 @@
       
     </div>
 	<div class="container">
-		<!--分页条-->
-		<nav>
-			<ul class="pagination">
-            </ul>
-		</nav>
-		<!--分页条-->
 		<!--记录-->
 		<div class="row" id="quanbushuoshuo">
 			
@@ -80,13 +74,40 @@
 <script src="public/lib/underscore/underscore-min.js"></script>
 <script>
 
-	$.get("/getalltalk?page=0",function(result){
-		var compiled = _.template($("#moban").html());
-		for(var i=0;i<result.resultData.length;i++){
-			var htmlstring=compiled(result.resultData[i]);
-			$("#quanbushuoshuo").append($(htmlstring));
-		}
+	var page=0;
+	var lock=true; 
+	var pagenum=12;
+	$.get("/getallcount",function(result){
+		console.log(result);
+		//总页数
+		var allpage=Math.ceil(parseInt(result)/pagenum);
+		$(window).scroll(function(){
+    		var scrollTop=$(window).scrollTop();
+    		var windowHeight=$(window).height();
+    		var documentHeight=$(document).height();
+    		if(documentHeight-windowHeight-scrollTop<200&&lock){
+    			lock=false;
+				if(page<allpage){
+   					page++;
+				}else{
+					page=0;
+				}
+    			getPage(page);
+    		}
+    	})			
 	});
+	getPage(0);
+	function getPage(page){
+		$.get("/getalltalk?&page="+page,function(result){
+			var compiled = _.template($("#moban").html());
+			for(var i=0;i<result.length;i++){
+				var htmlstring=compiled(result[i]);
+				$("#quanbushuoshuo").append($(htmlstring));
+			}
+			lock=true;
+		});
+	}
+	
 
 	$("#cuowukuang").hide();
 	$("input").focus(function(){
@@ -123,7 +144,7 @@
 		},function(result){
 			if(result=="1"){
 				//成功
-				alert("发布成功");
+				//alert("发布成功");
 				window.location="/";
 			}else{
 				alert("发布失败，请联系管理员！");	
