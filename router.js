@@ -17,10 +17,11 @@ router.post("/setphoto",userController.doSetPhoto);
 router.get("/cutphoto",userController.showCutPhoto);
 router.get("/docutphoto",userController.doCutPhoto);
 router.post("/publish",indexController.doPublish);
-router.get("/getalltalk",indexController.getAllTalk);
+router.get("/getpagetalk",indexController.getPageTalk);
 router.get("/getallcount",indexController.getAllCount);
 router.get("/userlist",userController.showUserList);
 router.get("/user/:username",userController.showUser);
+router.get("/usertalk",indexController.getUserTalk);
 
 
 module.exports = router;

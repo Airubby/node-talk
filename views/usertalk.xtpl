@@ -6,21 +6,23 @@
 	.one{
 		border-bottom: 1px solid #ccc;
 	}
+	.pagination li a{
+		    cursor: pointer;
+	}
 </style>
 {{/block}}
 
 {{#block ("body")}}
 
 	<div class="container">
-		<h1>{{username}}-{{title}}</h1>
-		<div>
-			{{#each(usertalk)}}
-      		<div class="one">
-      			<p>{{this.content}}</p>
-				<p>{{this.datetime}}</p>
-      		</div>
-			{{/each}}
+		<h1><span id="thisUser">{{username}}</span>-{{title}}</h1>
+		<div id="quanbushuoshuo">
+			
       	</div>
+		<nav>
+    		<ul class="pagination">
+			</ul>
+    	</nav>
     </div>
 
 {{/block}}
@@ -29,6 +31,42 @@
 
 
 {{#block ("foot")}}
+<script type="text/template" id="moban">
+	<div class="one">
+		<p><%=content%></p>
+		<p><%=datetime%></p>
+	</div>
+</script>
+<script src="/public/lib/underscore/underscore-min.js"></script>
+<script>
+var thisUser=$("#thisUser").text();
+$.get("/getallcount",function(result){
+	//总页数
+	pageamount=Math.ceil(parseInt(result)/12);
+	for(var i=1;i<=pageamount;i++){
+		$(".pagination").append("<li><a>"+i+"</a></li>");
+	}
+	$(".pagination li:first").addClass("active");
+	//监听
+	$(".pagination li").click(function(){
+		var page=$(this).index();
+		getPage(page);
+		$(this).addClass("active").siblings().removeClass("active");
+	});
+		
+});
+var compiled = _.template($("#moban").html());
+getPage(0);
+function getPage(page){
+	$("#quanbushuoshuo").html("");
+	$.get("/usertalk?username="+thisUser+"&page="+page,function(result){
+		for(var i=0;i<result.length;i++){
+			var htmlstring=compiled(result[i]);
+			$("#quanbushuoshuo").append($(htmlstring));
+		}
+	});
+}
+</script>
 
 
 {{/block}}

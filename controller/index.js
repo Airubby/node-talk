@@ -52,18 +52,40 @@ exports.doPublish = function (req, res, next) {
 };
 
 
-exports.getAllTalk = function (req, res, next) {
+exports.getPageTalk = function (req, res, next) {
     //这个页面接受一个参数
-	//http://127.0.0.1:3000/getalltalk?page=0
-    let page=req.query.page;
-    db.find("message",null,{"pageNum":12,"page":page,"sort":{"datetime":-1}},function(err,result){
-        res.json(result)
+    //http://127.0.0.1:3000/getalltalk?page=0
+    let page = req.query.page;
+    db.find("message", null, {
+        "pageNum": 12,
+        "page": page,
+        "sort": {
+            "datetime": -1
+        }
+    }, function (err, result) {
+        res.json(result);
     });
 
 };
 
-exports.getAllCount=function(req,res,next){
-    db.getAllCount("message",function(result){
+exports.getAllCount = function (req, res, next) {
+    db.getAllCount("message", function (result) {
+        res.json(result);
+    });
+}
+
+exports.getUserTalk = function (req, res, next) {
+    let page = req.query.page;
+    let username = req.query.username;
+    db.find("message", {
+        "username": username
+    }, {
+        "pageNum": 12,
+        "page": page,
+        "sort": {
+            "datetime": -1
+        }
+    }, function (err, result) {
         res.json(result);
     });
 }
