@@ -69,8 +69,25 @@
 
 
 {{#block ("foot")}}
-
+<script type="text/template" id="moban">
+	<div class="col-md-4">
+		<h2><img src="/icon/{{photo}}" width="40" /><%=username%>说:</h2>
+		<p><%=content%></p>
+		<p><%=datetime%></p>
+		<p><a href="" class="btn btn-default" role="button">查看详情</a></p>
+	</div>
+</script>
+<script src="public/lib/underscore/underscore-min.js"></script>
 <script>
+
+	$.get("/getalltalk?page=0",function(result){
+		var compiled = _.template($("#moban").html());
+		for(var i=0;i<result.resultData.length;i++){
+			var htmlstring=compiled(result.resultData[i]);
+			$("#quanbushuoshuo").append($(htmlstring));
+		}
+	});
+
 	$("#cuowukuang").hide();
 	$("input").focus(function(){
 		$("#cuowukuang").fadeOut();

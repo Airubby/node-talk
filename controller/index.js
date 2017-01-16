@@ -1,7 +1,7 @@
 "use strict"
 
 const db = require("../models/db");
-const formidable=require("formidable");
+const formidable = require("formidable");
 
 exports.showIndex = function (req, res, next) {
     if (req.session.login == "1") {
@@ -49,4 +49,17 @@ exports.doPublish = function (req, res, next) {
             res.send("1");
         });
     });
-}
+};
+
+
+exports.getAllTalk = function (req, res, next) {
+    //这个页面接受一个参数
+	//http://127.0.0.1:3000/getalltalk?page=0
+    let page=req.query.page;
+    db.find("message",null,{"pageNum":5,"page":page,"sort":{"datetime":-1}},function(err,result){
+        res.json({
+            "resultData":result
+        })
+    });
+
+};
